@@ -28,6 +28,7 @@ requirements:
     - python
     - jupyter_client
     - jupyterlab_server >=2.0.0,<3.0.0
+    - jupyter_server >=2.0.0,<3.0.0
     - packaging
     - tornado
     - traitlets
