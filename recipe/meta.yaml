@@ -10,12 +10,11 @@ source:
   sha256: 0bda2945e733d8633296bdc79a76487f44017c5b3089f61bf4098048bafe1b7b
 
 build:
+  skip: true  # [py<38]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
 
 requirements:
-  build:
-    - nodejs >=12.0.0,!=13,!=15,!=17,<18.0.0
   host:
     - python
     - pip
