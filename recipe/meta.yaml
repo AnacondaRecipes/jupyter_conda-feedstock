@@ -18,19 +18,21 @@ requirements:
   host:
     - python
     - pip
+    - setuptools
     - wheel
     - hatchling >=1.9.0
     - hatch-jupyter-builder
     - jupyterlab >=3.6.7,<5
     - jupyter-packaging >=0.7.9,<0.8.0
+    - jupyter_server >=2.0.0,<3.0.0
   run:
     - python
     - jupyter_client
     - jupyterlab_server >=2.0.0,<3.0.0
-    - jupyter_server >=2.0.0,<3.0.0
     - packaging
     - tornado
     - traitlets
+    - jupyterlab >=3.6.7,<5
 
 test:
   imports:
@@ -44,6 +46,7 @@ test:
     # The package passes all other tests and is properly functioning despite this CLI limitation
     - gator --help # [not win]
   requires:
+    - traitlets
     - pip
     - jupyterlab >=3.6.7,<5
     - python
