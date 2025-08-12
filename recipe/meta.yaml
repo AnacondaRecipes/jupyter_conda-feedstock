@@ -46,10 +46,7 @@ test:
     # The package passes all other tests and is properly functioning despite this CLI limitation
     - gator --help # [not win]
   requires:
-    - traitlets
     - pip
-    - jupyterlab >=3.6.7,<5
-    - python
 
 about:
   home: https://github.com/mamba-org/gator
