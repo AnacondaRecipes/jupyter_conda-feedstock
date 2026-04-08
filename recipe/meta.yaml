@@ -1,5 +1,5 @@
 {% set name = "mamba_gator" %}
-{% set version = "6.0.1" %}
+{% set version = "6.1.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 0bda2945e733d8633296bdc79a76487f44017c5b3089f61bf4098048bafe1b7b
+  sha256: 7efb728adb1ce8403de6e34894ad557ca77b0961c5c71a60dd6ee146149eb768
 
 build:
-  skip: true  # [py<38]
+  skip: true  # [py<310]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
 
@@ -22,8 +22,7 @@ requirements:
     - wheel
     - hatchling >=1.9.0
     - hatch-jupyter-builder
-    - jupyterlab >=3.6.7,<5
-    - jupyter-packaging >=0.7.9,<0.8.0
+    - jupyterlab >=4.0.0,<5.0.0
     - jupyter_server >=2.0.0,<3.0.0
   run:
     - python
@@ -32,7 +31,7 @@ requirements:
     - packaging
     - tornado
     - traitlets
-    - jupyterlab >=3.6.7,<5
+    - jupyterlab >=4.0.0,<5.0.0
 
 test:
   imports:
