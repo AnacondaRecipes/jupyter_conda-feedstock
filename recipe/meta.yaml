@@ -1,5 +1,5 @@
 {% set name = "mamba_gator" %}
-{% set version = "6.0.1" %}
+{% set version = "6.1.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 0bda2945e733d8633296bdc79a76487f44017c5b3089f61bf4098048bafe1b7b
+  sha256: 7efb728adb1ce8403de6e34894ad557ca77b0961c5c71a60dd6ee146149eb768
 
 build:
-  skip: true  # [py<38]
+  skip: true  # [py<310]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
 
@@ -18,33 +18,34 @@ requirements:
   host:
     - python
     - pip
-    - setuptools
-    - wheel
     - hatchling >=1.9.0
     - hatch-jupyter-builder
-    - jupyterlab >=3.6.7,<5
-    - jupyter-packaging >=0.7.9,<0.8.0
+    - jupyterlab >=4.0.0,<5.0.0
     - jupyter_server >=2.0.0,<3.0.0
   run:
     - python
     - jupyter_client
+    - jupyter_server >=2.0.0,<3.0.0
+    - jupyterlab >=4.0.0,<5.0.0
     - jupyterlab_server >=2.0.0,<3.0.0
     - packaging
+    - pip
     - tornado
     - traitlets
-    - jupyterlab >=3.6.7,<5
 
 test:
   imports:
     - mamba_gator
   commands:
     - pip check
-    - jupyter server extension list 2>&1 | grep -ie "mamba_gator.*OK"
-    - jupyter labextension list 2>&1 | grep -ie "@mamba-org/gator-lab.*OK"
+    - jupyter server extension list 2>&1 | grep -ie "mamba_gator.*OK"              # [not win]
+    - jupyter labextension list 2>&1 | grep -ie "@mamba-org/gator-lab.*OK"         # [not win]
+    - jupyter server extension list 2>&1 | findstr /i /c:"mamba_gator"             # [win]
+    - jupyter labextension list 2>&1 | findstr /i /c:"@mamba-org/gator-lab"        # [win]
     # Note: gator --help command may fail on Windows due to entry point issues
     # This is a known Windows-specific issue where the gator CLI tool is not properly accessible
     # The package passes all other tests and is properly functioning despite this CLI limitation
-    - gator --help # [not win]
+    - gator --help  # [not win]
   requires:
     - pip
 
