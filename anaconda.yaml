@@ -1,0 +1,9 @@
+anaconda_config_version: 1
+upstream_sources:
+  - github:
+      identifier: mamba-org/gator
+      use_max_tag: true
+    packages:
+      - jupyter_conda
+      - mamba_gator
+      - mamba-gator
